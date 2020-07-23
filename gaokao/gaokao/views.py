@@ -3,7 +3,6 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_http_methods
 from bson import json_util
-import jwt
 import json
 import datetime
 
