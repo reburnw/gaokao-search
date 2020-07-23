@@ -19,5 +19,5 @@ from .views import *
 
 urlpatterns = [
     path('', hello),
-    path('q',query)
+    path('api/q',query)
 ]
