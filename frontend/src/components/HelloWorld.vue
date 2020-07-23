@@ -33,13 +33,15 @@
             <br/>
             2. 本网站使用方式为：您可以搜索某一指定分数，网站会根据重庆考试院公布的录取信息，将所有包括该分数的录取信息展示给用户
             <br/> 
-            例如：用户搜索“文史类 550分”，网站会将2019年公示的所有的[录取最低分，录取最高分]区间包括550分的文史类录取信息（院校）展示给用户
+            例如：用户搜索“文史类 550分”，网站会将2019年公示的所有的[录取最高名次，录取最低名次]区间包括550分对应排名的文史类录取信息（院校）展示给用户
             <br/>
-            请注意：展示出的信息仅仅代表“该院校在2019年重庆市该类别该批次的录取分数区间”包括了用户搜索的分数，网站不保证与2020年度录取有关的任何事宜
+            请注意：展示出的信息仅仅代表“该院校在2019年重庆市该类别该批次的排位区间”与用户搜索的分数排位产生交集，网站不保证与2020年度录取有关的任何事宜
             <br/>
             3. 本网站所展示的所有数据均来自重庆市教育考试院官方网站，您可以在<a href="https://github.com/reburnw/gaokao-search/blob/master/origin_data/sites.txt">这个链接</a>下查看网站所有的数据源
             <br/>
-            4. 网站承诺不对用户的搜索记录做任何定制化的使用，您可以通过<a href="https://github.com/reburnw/gaokao-search">这个链接</a> 查看网站的开源代码实现，如您对网站有任何意见或者建议，您可以通过 reburnw@gmail.com 向开发者反馈
+            4. 因相关数据缺失，网站无法对部分高分与部分低分返回有效结果，敬请谅解
+            <br/>
+            5. 网站承诺不对用户的搜索记录做任何定制化的使用，您可以通过<a href="https://github.com/reburnw/gaokao-search">这个链接</a> 查看网站的开源代码实现，如您对网站有任何意见或者建议，您可以通过 reburnw@gmail.com 向开发者反馈
             
           </v-card-text>
   
@@ -62,7 +64,7 @@
             <v-radio label="默认查询" value="1"></v-radio>
           </v-radio-group-->
           <v-switch v-model="switch1" :label="`类别: ${q_type1}`" color="grey"></v-switch>
-          <v-text-field v-model="q_score" label="请输入查询的分数(0-750的整数)"></v-text-field>
+          <v-text-field v-model="q_score" label="请输入查询的2020年高考分数(0-750的整数)"></v-text-field>
         </v-container>
         <v-container fluid></v-container>
 
@@ -76,6 +78,9 @@
         <v-card-actions>
           <v-btn color="primary"  @click="search()">查询</v-btn>
         </v-card-actions>
+        <v-card-text class="text-left">
+            2020年，{{q_score}}分对应的排名区间为[{{meta.high}},{{meta.low}}],位次对应的2019年高考分数大概为{{meta.related_score}}
+          </v-card-text>
         <v-data-table
       :headers="headers"
       :items="desserts"
@@ -98,6 +103,11 @@
       radios: "1",
       q_score: "550",
       dialog: true,
+      meta: {
+        high: 0,
+        low: 0,
+        related_score: []
+      },
       headers: [
         /*
          {
@@ -162,6 +172,7 @@
         this.$http.get('/api/q?'+q_string).then(function(res){
             //console.log(res.data.data);
             that.desserts = res.data.data;
+            that.meta = res.data.meta;
         })
         
         return ;
