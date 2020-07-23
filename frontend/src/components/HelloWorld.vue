@@ -29,9 +29,18 @@
           </v-card-title>
   
           <v-card-text>
-            1. 本网站旨在为重庆市2020级考生高考考生提供参考，不以盈利为目的
+            1. 本网站旨在为重庆市2020级考生高考考生提供客观数据参考，不以盈利为目的，不提供任何主观的志愿填报建议
             <br/>
-            2. 本网站所展示的所有数据均来自重庆市教育考试院官方网站，您可以在<a src="">这个链接</a>下查看网站所有的数据源
+            2. 本网站使用方式为：您可以搜索某一指定分数，网站会根据重庆考试院公布的录取信息，将所有包括该分数的录取信息展示给用户
+            <br/> 
+            例如：用户搜索“文史类 550分”，网站会将2019年公示的所有的[录取最低分，录取最高分]区间包括550分的文史类录取信息（院校）展示给用户
+            <br/>
+            请注意：展示出的信息仅仅代表“该院校在2019年重庆市该类别该批次的录取分数区间”包括了用户搜索的分数，网站不保证与2020年度录取有关的任何事宜
+            <br/>
+            3. 本网站所展示的所有数据均来自重庆市教育考试院官方网站，您可以在<a href="https://github.com/reburnw/gaokao-search/blob/master/origin_data/sites.txt">这个链接</a>下查看网站所有的数据源
+            <br/>
+            4. 网站承诺不对用户的搜索记录做任何定制化的使用，您可以通过<a href="https://github.com/reburnw/gaokao-search">这个链接</a> 查看网站的开源代码实现，如您对网站有任何意见或者建议，您可以通过 reburnw@gmail.com 向开发者反馈
+            
           </v-card-text>
   
           <v-divider></v-divider>
@@ -43,7 +52,7 @@
               text
               @click="dialog = false"
             >
-              I accept
+              确认
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -65,7 +74,7 @@
         </v-card-text-->
 
         <v-card-actions>
-          <v-btn color="orange" text @click="search()">查询</v-btn>
+          <v-btn color="primary"  @click="search()">查询</v-btn>
         </v-card-actions>
         <v-data-table
       :headers="headers"
