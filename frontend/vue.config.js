@@ -6,7 +6,7 @@ module.exports = {
     // publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8000',
+        target: 'http://192.168.120.130:8000',
         changeOrigin: true,
       },
     }
