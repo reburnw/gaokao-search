@@ -64,7 +64,7 @@
             <v-radio label="默认查询" value="1"></v-radio>
           </v-radio-group-->
           <v-switch v-model="switch1" :label="`类别: ${qq_type1}`" color="grey"></v-switch>
-          <v-text-field v-model="q_score" label="请输入查询的2020年高考分数(0-750的整数)"></v-text-field>
+          <v-text-field v-model="q_score" label="请输入查询的2021年高考分数(0-750的整数)"></v-text-field>
         </v-container>
         <v-container fluid></v-container>
 
