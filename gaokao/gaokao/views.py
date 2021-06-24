@@ -51,7 +51,7 @@ def query(request):
                 if i["score"] == q_score:
                     q_res = i
                     break
-        print(q_res)
+        # print(q_res)
         res_data = []
         for data in datas:
             if data["type1"] != q_type1:

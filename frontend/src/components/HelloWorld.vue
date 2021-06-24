@@ -79,7 +79,7 @@
           <v-btn color="primary"  @click="search()">查询</v-btn>
         </v-card-actions>
         <v-card-text class="text-left">
-            2021年，{{q_score}}分对应的排名区间为[{{meta.high}},{{meta.low}}],位次对应的2019年高考分数大概为{{meta.related_score}}
+            2021年，{{qq_type1}}{{q_score}}分对应的排名区间为[{{meta.high}},{{meta.low}}],位次对应的2020年高考分数大概为{{meta.related_score}}
           </v-card-text>
         <v-data-table
       :headers="headers"
