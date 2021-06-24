@@ -4,6 +4,9 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_http_methods
 import json
 import datetime
+from influxdb import InfluxDBClient
+
+client = InfluxDBClient('152.136.32.8', 8086,"","","tuoj")
 
 datas = json.loads(open("./gaokao/res.json").read())
 
@@ -31,6 +34,20 @@ def query(request):
             return JsonResponse({
                 "msg":"q error"
             },status=404)
+        result = client.query('select count(*) from my_query;')
+        w_json = [{
+            "measurement": 'my_query',
+            "tags": {
+                'from': 'cq',
+                },
+            "fields": {
+                'score': q_score,
+                'type': q_type1,
+                'sum': result.raw['series'][0]['values'][0][1]
+                }
+            }]
+        # 写入数据库
+        client.write_points(w_json)
 
         q_res = None
         if q_type1 == "文史类":
@@ -51,7 +68,6 @@ def query(request):
                 if i["score"] == q_score:
                     q_res = i
                     break
-        # print(q_res)
         res_data = []
         for data in datas:
             if data["type1"] != q_type1:
