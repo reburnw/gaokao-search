@@ -2,7 +2,6 @@ from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_http_methods
-from bson import json_util
 import json
 import datetime
 
@@ -35,23 +34,24 @@ def query(request):
 
         q_res = None
         if q_type1 == "文史类":
-            if q_score > 664:
-                q_score=664
-            if q_score < 268:
-                q_score=268
+            if q_score > 665:
+                q_score=665
+            if q_score < 180:
+                q_score=180
             for i in wen:
                 if i["score"] == q_score:
                     q_res = i
                     break
         if q_type1 == "理工类":
-            if q_score > 706:
-                q_score=706
-            if q_score < 253:
-                q_score=253
+            if q_score > 695:
+                q_score=695
+            if q_score < 180:
+                q_score=180
             for i in li:
                 if i["score"] == q_score:
                     q_res = i
                     break
+        print(q_res)
         res_data = []
         for data in datas:
             if data["type1"] != q_type1:

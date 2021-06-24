@@ -29,31 +29,33 @@ def check(x,y):
         return False
 
 def main():
+    wen_21 = process(open("./gaokao/gaokao/2021_wen").read().strip().split('\n'))
+    li_21 = process(open("./gaokao/gaokao/2021_li").read().strip().split('\n'))
     
     wen_20 = process(open("./gaokao/gaokao/2020_wen").read().strip().split('\n'))
     li_20 = process(open("./gaokao/gaokao/2020_li").read().strip().split('\n'))
 
-    wen_19 = process(open("./gaokao/gaokao/2019_wen").read().strip().split('\n'))
-    li_19 = process(open("./gaokao/gaokao/2019_li").read().strip().split('\n'))
+    # wen_19 = process(open("./gaokao/gaokao/2019_wen").read().strip().split('\n'))
+    # li_19 = process(open("./gaokao/gaokao/2019_li").read().strip().split('\n'))
     
-    for i in wen_20:
+    for i in wen_21:
         i["related_score"] = []
-        for j in wen_19:
+        for j in wen_20:
             if(check(i,j)):
                 i["related_score"].append(j["score"])
 
-    for i in li_20:
+    for i in li_21:
         i["related_score"] = []
-        for j in li_19:
+        for j in li_20:
             if(check(i,j)):
                 i["related_score"].append(j["score"])
 
     f = open("./gaokao/gaokao/wen.json","w")
-    f.write(json.dumps(wen_20,indent=4))
+    f.write(json.dumps(wen_21,indent=4))
     f.close()
 
     f = open("./gaokao/gaokao/li.json","w")
-    f.write(json.dumps(li_20,indent=4))
+    f.write(json.dumps(li_21,indent=4))
     f.close()
     
     

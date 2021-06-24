@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="text-center aligh-center">
       <v-card class="mx-auto" width="90%">
-        <v-card-title>重庆市2019年高校录取信息查询</v-card-title>
+        <v-card-title>重庆市2020年高校录取信息查询</v-card-title>
 
         
 
@@ -29,7 +29,7 @@
           </v-card-title>
   
           <v-card-text>
-            1. 本网站旨在为重庆市2020级考生高考考生提供客观数据参考，不以盈利为目的，不提供任何主观的志愿填报建议
+            1. 本网站旨在为重庆市2021级考生高考考生提供客观数据参考，不以盈利为目的，不提供任何主观的志愿填报建议
             <br/>
             2. 本网站使用方式为：您可以搜索某一指定分数，网站会根据重庆考试院公布的录取信息，将所有包括该分数的录取信息展示给用户
             <br/> 
@@ -63,7 +63,7 @@
           <!-- v-radio-group label="查询方式" v-model="radios" :mandatory="false">
             <v-radio label="默认查询" value="1"></v-radio>
           </v-radio-group-->
-          <v-switch v-model="switch1" :label="`类别: ${q_type1}`" color="grey"></v-switch>
+          <v-switch v-model="switch1" :label="`类别: ${qq_type1}`" color="grey"></v-switch>
           <v-text-field v-model="q_score" label="请输入查询的2020年高考分数(0-750的整数)"></v-text-field>
         </v-container>
         <v-container fluid></v-container>
@@ -79,7 +79,7 @@
           <v-btn color="primary"  @click="search()">查询</v-btn>
         </v-card-actions>
         <v-card-text class="text-left">
-            2020年，{{q_score}}分对应的排名区间为[{{meta.high}},{{meta.low}}],位次对应的2019年高考分数大概为{{meta.related_score}}
+            2021年，{{q_score}}分对应的排名区间为[{{meta.high}},{{meta.low}}],位次对应的2019年高考分数大概为{{meta.related_score}}
           </v-card-text>
         <v-data-table
       :headers="headers"
@@ -146,6 +146,12 @@
           return "文史类"
         } else {
           return "理工类"        }
+      },
+      qq_type1: function() {
+        if(!this.switch1) {
+          return "历史类"
+        } else {
+          return "物理类"        }
       }
     },
     methods: {
