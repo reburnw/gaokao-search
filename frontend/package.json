@@ -14,7 +14,7 @@
     "vue-axios": "^2.1.5",
     "vue-datatable": "^1.0.4",
     "vue-request": "^1.0.1",
-    "vuetify": "^2.3.5"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
